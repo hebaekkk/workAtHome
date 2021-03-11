@@ -10,6 +10,7 @@ import SnapKit
 
 class headCell: UITableViewCell {
     
+    static let identifier = "headCell"
     private let items: [String] = [
         "또띠아",
         "버터",
@@ -25,7 +26,8 @@ class headCell: UITableViewCell {
     
     
 //  MARK : View Components
-    var collectionView: UICollectionView!
+    var collectionView: UICollectionView?
+    //private weak var layout = UICollectionViewFlowLayout.init()
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -54,15 +56,21 @@ class headCell: UITableViewCell {
     
     let messageButton: UIButton = {
         let button = UIButton()
+        button.backgroundColor = .yellow
         button.setTitle("문자로 상담", for: .normal)
-        button.imageView?.image = UIImage(systemName: "message.fill")
+        button.setTitleColor(.black, for: .normal)
+        button.setImage(UIImage(systemName: "message.fill"), for: .normal)
+        //button.imageView?.image = UIImage(systemName: "message.fill")
         return button
     }()
     
     let phoneButton: UIButton = {
         let button = UIButton()
+        button.backgroundColor = .yellow
         button.setTitle("전화로 상담", for: .normal)
-        button.imageView?.image = UIImage(systemName: "phone.fill")
+        button.setTitleColor(.black, for: .normal)
+        button.setImage(UIImage(systemName: "phone.fill"), for: .normal)
+        //button.imageView?.image = UIImage(systemName: "phone.fill")
         return button
     }()
     
@@ -76,15 +84,15 @@ class headCell: UITableViewCell {
     
     
     func setupView() {
-        
+        self.contentView.backgroundColor = .orange
         self.contentView.addSubview(profileImageView)
         profileImageView.snp.makeConstraints{ make in
-            make.width.equalTo(32)
-            make.height.equalTo(32)
+            make.width.equalTo(50)
+            make.height.equalTo(50)
             make.top.equalTo(12)
             make.leading.equalTo(10)
         }
-        profileImageView.layer.cornerRadius = 16
+        profileImageView.layer.cornerRadius = 25
         
         let titleLabelStack = UIStackView()
         titleLabelStack.axis = .vertical
@@ -99,29 +107,54 @@ class headCell: UITableViewCell {
             make.top.equalTo(12)
         }
         
-        setCollectionView()
-        
-    }
-    
-    func setCollectionView() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = .zero
         flowLayout.minimumInteritemSpacing = 16
         flowLayout.scrollDirection = .horizontal
         flowLayout.sectionInset = .init(top: 5, left: 16, bottom: 6, right: 16)
         
-        collectionView.setCollectionViewLayout(flowLayout, animated: false)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .cyan
-        collectionView.register(dyLengthCollectionViewCell.self, forCellWithReuseIdentifier: dyLengthCollectionViewCell.identifier)
+        //self.layout = flowLayout
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 100, height: 30), collectionViewLayout: flowLayout)
+        //collectionView?.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        //collectionView!.setCollectionViewLayout(flowLayout, animated: false)
+        collectionView!.delegate = self
+        collectionView!.dataSource = self
+        collectionView!.backgroundColor = .cyan
+        collectionView!.register(dyLengthCollectionViewCell.self, forCellWithReuseIdentifier: dyLengthCollectionViewCell.identifier)
         
-        self.contentView.addSubview(collectionView)
+        self.contentView.addSubview(collectionView!)
         
         ///[  ]Constraint 적용하고 확인 해줘야돼 현은아
+        collectionView!.snp.makeConstraints{ make in
+            make.leading.equalTo(10)
+            make.trailing.equalTo(-10)
+            //make.bottom.equalTo(3)
+            make.height.greaterThanOrEqualTo(50)
+            make.top.equalTo(profileImageView.snp.bottom).offset(10)
+        }
         
+        let buttonStack = UIStackView()
+        buttonStack.backgroundColor = .black
+        buttonStack.axis = .horizontal
+        buttonStack.spacing = 1
+        buttonStack.distribution = .fillEqually
+        buttonStack.layer.borderWidth = 1
+        buttonStack.layer.borderColor = UIColor.black.cgColor
+        
+        buttonStack.addArrangedSubview(messageButton)
+        buttonStack.addArrangedSubview(phoneButton)
+        
+        self.contentView.addSubview(buttonStack)
+        buttonStack.snp.makeConstraints{ make in
+            make.leading.equalTo(12)
+            make.trailing.equalTo(-12)
+            make.top.equalTo(self.collectionView!.snp.bottom).offset(10)
+            make.bottom.equalTo(-5)
+            
+        }
         
     }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
