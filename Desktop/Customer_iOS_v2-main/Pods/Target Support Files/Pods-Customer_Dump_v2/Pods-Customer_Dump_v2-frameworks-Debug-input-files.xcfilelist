@@ -1,0 +1,11 @@
+${PODS_ROOT}/Target Support Files/Pods-Customer_Dump_v2/Pods-Customer_Dump_v2-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework
+${BUILT_PRODUCTS_DIR}/BulletinBoard/BLTNBoard.framework
+${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework
+${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+${BUILT_PRODUCTS_DIR}/MXParallaxHeader/MXParallaxHeader.framework
+${BUILT_PRODUCTS_DIR}/PagingKit/PagingKit.framework
+${BUILT_PRODUCTS_DIR}/PanModal/PanModal.framework
+${BUILT_PRODUCTS_DIR}/PhotoSlider/PhotoSlider.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework

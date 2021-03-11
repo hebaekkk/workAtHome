@@ -1,0 +1,27 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Customer_Dump_v2' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Customer_Dump_v2
+  pod "PagingKit" # add
+
+  pod 'SnapKit', '~> 5.0.0'  
+  
+  pod 'BulletinBoard'
+  
+  pod 'Alamofire',  '~> 5.2'
+  
+  pod 'Cosmos', '~> 23.0'
+  
+  pod "BSImagePicker", "~> 3.1"
+  
+  pod "MXParallaxHeader"
+
+  pod "PhotoSlider"
+  
+  pod 'PanModal'
+
+end
